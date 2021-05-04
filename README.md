@@ -49,3 +49,15 @@
 2. 근데 해당 명령 전후에 다른 명령을 붙이는게 좀 까다로워서
 3. `npm run android`처럼 쓸 수 있게 만들어 놓은 `android` 스크립트를 쓰기로 했다.
 4. 해당 `android` 스크립트는 본 명령 실행 전에 환경변수 export하는 파일(`platformsetup/android.sh)을 source한다.
+
+### 안 쓰는 설정 파일 제거
+
+1. `.editorconfig`: 해당없음
+2. `.gitattributes`: 윈도 안써서 무관
+3. `.watchmanconfig`: 텅텅 비어서 무쓸모
+
+### iOS 에서 실행하기
+
+1. 괴랄한 빌드 에러 마주함(https://velog.io/@maliethy/react-native-ios-compile-error).
+2. `Podfile`에서 `use_flipper!()` 줄을 주석처리함.
+3. 잘 됨.
