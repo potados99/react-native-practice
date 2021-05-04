@@ -66,13 +66,13 @@
 2. `Podfile`에서 `use_flipper!()` 줄을 주석처리함.
 3. 잘 됨.
 
-### Ionicon 사용하기
+### Ionicons 사용하기
 
 1. 여러 아이콘들을 쓰고 싶다면
 2. `npm i react-native-vector-icons`
 3. `npm i --save-dev @types/react-native-vector-icons`
 
-### iOS에서 Ion icon 사용하기
+### iOS에서 Ionicons 사용하기
 
 1. `ios/rnpractice/Info.plist` 열고
 2. 아래 엔트리 추가.
@@ -98,7 +98,7 @@
     </array>
 ```
 
-### Android에서 Ion icon 사용하기
+### Android에서 Ionicons 사용하기
 
 1. 여기도 마찬가지로 폰트 사용 설정이 필요하다.
 2. `android/app/build.gradle` 맨 위에
@@ -110,3 +110,5 @@
 
 - `ios`나 `android` 디렉토리 날리면 큰일나겠다 싶다.
 - 아니 이럴거면 어차피 iOS나 Android나 네이티브 할 줄 알아야 하는건가....ㅠ
+- 기본 컴포넌트를 직접 가져다 쓰기보다는 최소한의 코드로만 사용할 수 있는 wrapper 컴포넌트를 만들어 쓰고 있다.
+- Best practice를 봐야 할 것 같다. 코드가 각이 잡혀있다기보다는 뭔가 다 흐물흐물해 보여서 좀 그렇다.... 아직 이해가 덜 됐기도 하구,,
