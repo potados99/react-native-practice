@@ -18,8 +18,11 @@ const config: SimpleTabNavigatorConfig = {
       component: SettingsStackScreen,
     },
   ],
-  activeTintColor: '#0088FF',
-  inactiveTintColor: 'grey',
+
+  bottomTabBarOptions: {
+    activeTintColor: '#0088FF',
+    inactiveTintColor: 'grey',
+  },
 };
 
 export default function MyNavigator() {

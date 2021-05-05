@@ -1,11 +1,11 @@
 import React from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {BottomTabBarOptions} from '@react-navigation/bottom-tabs/src/types';
 
 export type SimpleTabNavigatorConfig = {
   tabs: NavigationTab[];
-  activeTintColor: string;
-  inactiveTintColor: string;
+  bottomTabBarOptions?: BottomTabBarOptions;
 };
 
 export type NavigationTab = {
@@ -38,10 +38,7 @@ export default function SimpleTabNavigator({config}: Config) {
           );
         },
       })}
-      tabBarOptions={{
-        activeTintColor: config.activeTintColor,
-        inactiveTintColor: config.inactiveTintColor,
-      }}>
+      tabBarOptions={config.bottomTabBarOptions}>
       {config.tabs.map(tab => (
         <Tab.Screen key={tab.name} name={tab.name} component={tab.component} />
       ))}

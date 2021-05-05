@@ -1,14 +1,19 @@
 import React from 'react';
 import {createStackNavigator, TransitionPresets} from '@react-navigation/stack';
-import {StackNavigationConfig} from '@react-navigation/stack/lib/typescript/src/types';
+import {
+  StackHeaderOptions,
+  StackNavigationConfig,
+} from '@react-navigation/stack/lib/typescript/src/types';
 
 export type SimpleStackNavigatorConfig = {
   screens: NavigationScreen[];
-} & StackNavigationConfig;
+  stackNavigationConfig?: StackNavigationConfig;
+};
 
 export type NavigationScreen = {
   name: string;
   component: React.ComponentType<any>;
+  stackHeaderOptions?: StackHeaderOptions;
 };
 
 type Config = {
@@ -22,10 +27,14 @@ export default function SimpleStackNavigator<
 
   return (
     <Stack.Navigator
-      mode={config.mode}
-      headerMode={config.headerMode}
-      keyboardHandlingEnabled={config.keyboardHandlingEnabled}
-      detachInactiveScreens={config.detachInactiveScreens}
+      mode={config.stackNavigationConfig?.mode}
+      headerMode={config.stackNavigationConfig?.headerMode}
+      keyboardHandlingEnabled={
+        config.stackNavigationConfig?.keyboardHandlingEnabled
+      }
+      detachInactiveScreens={
+        config.stackNavigationConfig?.detachInactiveScreens
+      }
       screenOptions={{
         ...TransitionPresets.SlideFromRightIOS,
       }}>
@@ -34,6 +43,7 @@ export default function SimpleStackNavigator<
           key={tab.name}
           name={tab.name}
           component={tab.component}
+          options={tab.stackHeaderOptions}
         />
       ))}
     </Stack.Navigator>
