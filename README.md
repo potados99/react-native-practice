@@ -104,6 +104,23 @@
 2. `android/app/build.gradle` 맨 위에
 3. `apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"` 추가.
 
+### iOS XCode로 빌드하기
+
+1. 다 잘 되는가 싶더니
+2. 마지막 `node /Users/potados/WebstormProjects/rnpractice/node_modules/react-native/cli.js bundle --entry-file index.js --platform ios --dev true --reset-cache --bundle-output /Users/potados/Library/Developer/Xcode/DerivedData/rnpractice-adztxvlqidodmufbmwbaeljccwkb/Build/Products/Debug-iphoneos/main.jsbundle --assets-dest /Users/potados/Library/Developer/Xcode/DerivedData/rnpractice-adztxvlqidodmufbmwbaeljccwkb/Build/Products/Debug-iphoneos/rnpractice.app`에서 터진다.
+3. `--entry-file index.js` 이게 문제다. 나는 `index.ts`를 쓸건데 저 친구는 `index`면 무조건 `js`인 줄 안다.
+4. 그냥 `index.js`로 바꿨다.
+
+### 네비게이션, 네이티브냐 페이크냐
+
+1. React Native를 한다면 네비게이션에서 [지옥을 맛보게 된다](https://jsdev.kr/t/react-native-1-navigation/2617) (하..)
+2. 네이티브 네비게이션은 라이브러리상으로 조작할 수 있는 범위가 작다는 것 빼고는 단점이 없다.
+3. 페이크(뭐라 불러야 할 지 몰라서 ㅠ) 네비게이션은 UI를 그냥 다 자바스크립트로 그리는 방법인데, 라이브러리 단에서 커스터마이징이 잘 된다.
+4. 네이티브를 사용하면 각 OS의 잘 다듬어진 UI에 의한 사용자 경험을 보존할 수 있고, OS 업데이트에 따라 자동으로 최신 UI가 반영되는 매우 큰 장점이 있다.
+5. 구치만 그냥 자바스크립트로 '재현'한 네비게이션도 나쁘지 않은 것 같다. 
+6. OS별 네이티브 네비게이션 동작(인스타그램처럼.. 인스타는 정말 네이티브인 줄 알았다)은 포기하고, `react-navigation`이 제공하는 '페이크' 네비게이션을 쓰기로 했다.
+7. 많은 앱들도 같은 길을 가고 있는 것 같다 (안-심).
+
 ## 오늘의 교훈
 
 ### 2021.5.4

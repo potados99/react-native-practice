@@ -1,6 +1,6 @@
 import React from 'react';
 import HomeScreen from '../home/HomeScreen';
-import SettingsScreen from '../settings/SettingsScreen';
+import SettingsStackScreen from '../settings/SettingsStackScreen';
 import SimpleNavigator, {
   SimpleNavigatorConfig,
 } from '../../components/SimpleNavigator';
@@ -15,7 +15,7 @@ const config: SimpleNavigatorConfig = {
     {
       name: 'Settings',
       iconName: focused => (focused ? 'settings' : 'settings-outline'),
-      component: SettingsScreen,
+      component: SettingsStackScreen,
     },
   ],
   activeTintColor: '#0088FF',
