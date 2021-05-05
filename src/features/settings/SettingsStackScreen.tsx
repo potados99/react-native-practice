@@ -18,6 +18,7 @@ export default function SettingsStackScreen() {
 
   return (
     <SettingsStack.Navigator
+      headerMode="screen"
       screenOptions={TransitionScreenOptions}
       initialRouteName="Settings">
       <SettingsStack.Screen name="Settings" component={Settings} />
