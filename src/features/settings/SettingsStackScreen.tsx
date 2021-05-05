@@ -16,6 +16,9 @@ const config: SimpleStackNavigatorConfig = {
       component: ProfileScreen,
     },
   ],
+  stackNavigationConfig: {
+    headerMode: 'screen',
+  },
 };
 
 export type SettingsStackParamList = {
