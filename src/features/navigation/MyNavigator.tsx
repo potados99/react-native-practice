@@ -1,11 +1,11 @@
 import React from 'react';
 import HomeScreen from '../home/HomeScreen';
 import SettingsStackScreen from '../settings/SettingsStackScreen';
-import SimpleNavigator, {
-  SimpleNavigatorConfig,
-} from '../../components/SimpleNavigator';
+import SimpleTabNavigator, {
+  SimpleTabNavigatorConfig,
+} from '../../components/SimpleTabNavigator';
 
-const config: SimpleNavigatorConfig = {
+const config: SimpleTabNavigatorConfig = {
   tabs: [
     {
       name: 'Home',
@@ -23,5 +23,5 @@ const config: SimpleNavigatorConfig = {
 };
 
 export default function MyNavigator() {
-  return <SimpleNavigator config={config} />;
+  return <SimpleTabNavigator config={config} />;
 }

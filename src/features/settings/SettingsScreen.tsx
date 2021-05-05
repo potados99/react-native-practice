@@ -8,7 +8,7 @@ type Props = {
   navigation: StackNavigationProp<SettingsStackParamList, 'Settings'>;
 };
 
-export default function Settings({navigation}: Props) {
+export default function SettingsScreen({navigation}: Props) {
   return (
     <View>
       <Text>Hi!!!</Text>

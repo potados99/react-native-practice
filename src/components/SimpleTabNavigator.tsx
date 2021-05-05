@@ -2,23 +2,23 @@ import React from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
+export type SimpleTabNavigatorConfig = {
+  tabs: NavigationTab[];
+  activeTintColor: string;
+  inactiveTintColor: string;
+};
+
 export type NavigationTab = {
   name: string;
   iconName: (focused: boolean) => string;
   component: React.ComponentType<any>;
 };
 
-export type SimpleNavigatorConfig = {
-  tabs: NavigationTab[];
-  activeTintColor: string;
-  inactiveTintColor: string;
+type Config = {
+  config: SimpleTabNavigatorConfig;
 };
 
-export default function SimpleNavigator({
-  config,
-}: {
-  config: SimpleNavigatorConfig;
-}) {
+export default function SimpleTabNavigator({config}: Config) {
   const Tab = createBottomTabNavigator();
 
   return (

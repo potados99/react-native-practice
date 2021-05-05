@@ -9,7 +9,7 @@ type Props = {
   navigation: StackNavigationProp<SettingsStackParamList, 'Profile'>;
 };
 
-export default function Profile({route, navigation}: Props) {
+export default function ProfileScreen({route, navigation}: Props) {
   const {userId} = route.params;
 
   return (
