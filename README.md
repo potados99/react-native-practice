@@ -167,6 +167,16 @@
 1. 무려 `react-navigation`이 `NavigationContainer`에서 `theme`속성으로 테마 설정을 지원한다!
 2. 자세한건 여기: https://reactnavigation.org/docs/themes/
 
+### 카드 뷰
+
+1. 기본으로 없다.
+2. https://www.npmjs.com/package/react-native-cardview 쓴다.
+3. `npm install react-native-cardview --save`
+4. 이래저래 귀찮은 작업들 `MainApplication`과 `build.gradle`에서 처리해준다.
+
+
+
+
 ## 오늘의 교훈
 
 ### 2021.5.4

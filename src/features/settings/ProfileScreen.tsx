@@ -1,7 +1,7 @@
 import React from 'react';
 import {Button, Text, View} from 'react-native';
 import {SettingsStackParamList} from './SettingsStackScreen';
-import {RouteProp} from '@react-navigation/native';
+import {RouteProp, useTheme} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import palette from '../../res/palette';
 
@@ -15,7 +15,8 @@ export default function ProfileScreen({route, navigation}: Props) {
 
   return (
     <View style={palette.centeringContainer}>
-      <Text>{`My id is ${userId}!`}</Text>
+      <Text
+        style={{color: useTheme().colors.text}}>{`My id is ${userId}!`}</Text>
       <Button title="OK" onPress={() => navigation.goBack()} />
     </View>
   );

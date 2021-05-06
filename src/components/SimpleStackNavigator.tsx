@@ -3,6 +3,7 @@ import {createStackNavigator, TransitionPresets} from '@react-navigation/stack';
 import {
   StackHeaderOptions,
   StackNavigationConfig,
+  StackNavigationOptions,
 } from '@react-navigation/stack/lib/typescript/src/types';
 
 export type SimpleStackNavigatorConfig = {
@@ -14,7 +15,7 @@ export type SimpleStackNavigatorConfig = {
 export type NavigationScreen = {
   name: string;
   component: React.ComponentType<any>;
-  stackHeaderOptions?: StackHeaderOptions;
+  options?: StackHeaderOptions & StackNavigationOptions;
 };
 
 type Config = {
@@ -45,7 +46,7 @@ export default function SimpleStackNavigator<
           key={tab.name}
           name={tab.name}
           component={tab.component}
-          options={tab.stackHeaderOptions}
+          options={tab.options}
         />
       ))}
     </Stack.Navigator>
