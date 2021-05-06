@@ -5,7 +5,11 @@
 
 import React from 'react';
 import {StatusBar, useColorScheme} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
+import {
+  DarkTheme,
+  DefaultTheme,
+  NavigationContainer,
+} from '@react-navigation/native';
 import MyNavigator from './navigation/MyNavigator';
 import {Provider} from 'react-redux';
 import {store, persistedStore} from './store/MyGlobalStore';
@@ -17,7 +21,7 @@ export default function App() {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistedStore}>
-        <NavigationContainer>
+        <NavigationContainer theme={isDarkMode ? DarkTheme : DefaultTheme}>
           <StatusBar
             translucent={false}
             backgroundColor={isDarkMode ? 'black' : 'white'}

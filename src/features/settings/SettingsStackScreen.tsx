@@ -4,6 +4,11 @@ import ProfileScreen from './ProfileScreen';
 import SimpleStackNavigator, {
   SimpleStackNavigatorConfig,
 } from '../../components/SimpleStackNavigator';
+import colors from '../../res/colors';
+import Icon from 'react-native-vector-icons/Feather';
+import {Platform} from 'react-native';
+import ThemeContext from '@react-navigation/native/lib/typescript/src/theming/ThemeContext';
+import {useTheme} from '@react-navigation/native';
 
 const config: SimpleStackNavigatorConfig = {
   screens: [
@@ -19,6 +24,20 @@ const config: SimpleStackNavigatorConfig = {
 
   stackNavigationConfig: {
     headerMode: 'screen',
+  },
+
+  stackHeaderCommonOptions: {
+    headerBackTitleVisible: false,
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },
+    headerTruncatedBackTitle: undefined,
+    headerLeftContainerStyle: {
+      left: Platform.OS === 'ios' ? 12 : 0,
+    },
+    headerBackImage: () => (
+      <Icon name="arrow-left" size={30} color={useTheme().colors.text} />
+    ),
   },
 };
 

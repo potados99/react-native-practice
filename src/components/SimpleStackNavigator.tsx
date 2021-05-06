@@ -8,6 +8,7 @@ import {
 export type SimpleStackNavigatorConfig = {
   screens: NavigationScreen[];
   stackNavigationConfig?: StackNavigationConfig;
+  stackHeaderCommonOptions?: StackHeaderOptions;
 };
 
 export type NavigationScreen = {
@@ -36,6 +37,7 @@ export default function SimpleStackNavigator<
         config.stackNavigationConfig?.detachInactiveScreens
       }
       screenOptions={{
+        ...config.stackHeaderCommonOptions,
         ...TransitionPresets.SlideFromRightIOS,
       }}>
       {config.screens.map(tab => (

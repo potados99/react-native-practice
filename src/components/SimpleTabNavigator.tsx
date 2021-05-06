@@ -1,5 +1,5 @@
 import React from 'react';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import Icons from 'react-native-vector-icons/Ionicons';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {BottomTabBarOptions} from '@react-navigation/bottom-tabs/src/types';
 
@@ -26,7 +26,7 @@ export default function SimpleTabNavigator({config}: Config) {
       screenOptions={({route}) => ({
         tabBarIcon: ({focused, color, size}) => {
           return (
-            <Ionicons
+            <Icons
               name={
                 config.tabs
                   ?.find(tab => tab.name === route.name)

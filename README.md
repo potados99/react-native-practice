@@ -155,6 +155,18 @@
 1. `createAction`, `createReducer`, `configureStore` 아주 도움됨.
 2. https://www.imaginarycloud.com/blog/react-native-redux/ 여기 아주 좋은 예시!
 
+### Back button 화살표
+
+1. 안드로이드는 arrow back, iOS는 chevron이 기본이다.
+2. 그런데 많은 앱들이 안드로이드와 같이 arrow back을 차용한다.
+3. 나도 그러기로 했다.
+4. **모서리가 둥근** arrow back은 `react-native-vector-icons/Feather`에서 `arrow-left`라는 이름으로 찾을 수 있었다.
+
+### 다크모드 지원하려면
+
+1. 무려 `react-navigation`이 `NavigationContainer`에서 `theme`속성으로 테마 설정을 지원한다!
+2. 자세한건 여기: https://reactnavigation.org/docs/themes/
+
 ## 오늘의 교훈
 
 ### 2021.5.4
