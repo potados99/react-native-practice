@@ -7,6 +7,9 @@ export default {
   textSecondary: '#70808D',
   textTertiary: '#B7B9C0',
 
+  rippleColorLight: '#00000040',
+  rippleColorDark: '#ffffff40',
+
   shadowColor: '#555555',
   darkComponentBackground: '#222222',
 };

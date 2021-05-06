@@ -170,12 +170,18 @@
 ### 카드 뷰
 
 1. 기본으로 없다.
-2. https://www.npmjs.com/package/react-native-cardview 쓴다.
-3. `npm install react-native-cardview --save`
-4. 이래저래 귀찮은 작업들 `MainApplication`과 `build.gradle`에서 처리해준다.
+~~2. https://www.npmjs.com/package/react-native-cardview 쓴다.~~
+~~3. `npm install react-native-cardview --save`~~
+~~4. 이래저래 귀찮은 작업들 `MainApplication`과 `build.gradle`에서 처리해준다.~~
 
-
-
+2. 직접 만들었다.
+3. 카드뷰 그림자와 클릭 이펙트 하......
+4. iOS는 css 속성만으로 그림자가 나오지만 안드로이드에서는 아니다.
+5. 안드로이드에서는 elevation을 사용한다.
+6. 그런데 TouchableOpacity는 elevation과 함께 쓸 때에 시각적 버그를 유발한다(그림자가 정말 이상해짐).
+7. 그래서 안드로이드에서는 TouchableNativeFeedback를, iOS에서는 TouchableOpacity를 쓰기로 한다.
+8. 다만 TouchableNativeFeedback가 border radius가 있는 뷰의 끄트머리를 반영하지 못하는 문제가 있었으나 해결.
+9. https://github.com/facebook/react-native/issues/6480 여기 자세히 나와있음.
 
 ## 오늘의 교훈
 
@@ -195,3 +201,4 @@
 
 - 레이아웃 안드로이드로만 하다가 FlexBox 접하니까 어지럽다,,
 - 단방향 데이터 전달 신선하다. 속에서 무슨 일이 일어나는지는 모르겠지만 일단 덮어두고 있는 중...
+- 어떻게 괜찮은 카드뷰 라이브러리가 하나도 없어...ㅠㅠ

@@ -1,11 +1,10 @@
 import React from 'react';
-import {FlatList, Text, View} from 'react-native';
+import {FlatList, Text, TouchableOpacity, View} from 'react-native';
 
 import {SettingsStackParamList} from './SettingsStackScreen';
 import {StackNavigationProp} from '@react-navigation/stack';
-import palette from '../../res/palette';
-import {Theme, useTheme} from '@react-navigation/native';
 import CardView from '../../components/CardView';
+import {currentTheme} from '../../res/theme';
 
 type SettingFeature = {
   key: string;
@@ -35,9 +34,9 @@ type Props = {
 
 export default function SettingsScreen({navigation}: Props) {
   return (
-    <View style={palette.centeringContainer}>
+    <View>
       <FlatList
-        style={{width: '100%'}}
+        contentContainerStyle={{height: '100%' /*prevent last item clipping*/}}
         data={listItems}
         renderItem={item => (
           <ListItem item={item.item} navigation={navigation} />
@@ -53,16 +52,31 @@ interface ListItemProps extends Props {
 
 function ListItem({item, navigation}: ListItemProps) {
   return (
-    <CardView
-      onPress={() => navigation.navigate(item.destination, item.params)}>
-      <Text style={themedStyle(useTheme())}>{item.title}</Text>
-    </CardView>
+    <View>
+      <Text
+        style={{
+          ...currentTheme().text,
+          marginHorizontal: 12,
+          marginTop: 16,
+          marginBottom: 8,
+          fontSize: 24,
+          fontWeight: 'bold',
+        }}>
+        {item.params.userId}
+      </Text>
+      <CardView
+        style={{
+          marginHorizontal: 12,
+        }}
+        onPress={() => navigation.navigate(item.destination, item.params)}>
+        <Text
+          style={{
+            ...currentTheme().text,
+            fontSize: 18,
+          }}>
+          {item.title}
+        </Text>
+      </CardView>
+    </View>
   );
 }
-
-const themedStyle = (theme: Theme) => ({
-  padding: 10,
-  fontSize: 18,
-  height: 44,
-  color: theme.colors.text,
-});
