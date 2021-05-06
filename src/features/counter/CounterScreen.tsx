@@ -1,4 +1,8 @@
 import React from 'react';
+import palette from '../../res/palette';
+import {CounterState} from './CounterReducer';
+import {connect, ConnectedProps} from 'react-redux';
+import {setAction, decrementAction, incrementAction} from './CounterActions';
 import {
   StyleSheet,
   Text,
@@ -6,19 +10,33 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import palette from '../../res/palette';
 
-export default function CounterScreen() {
+const connector = connect((state: CounterState) => state);
+
+interface Props extends ConnectedProps<typeof connector> {}
+
+function CounterScreen({counter, dispatch}: Props) {
   return (
     <View style={palette.centeringContainer}>
-      <Text>Counter: 0</Text>
-      <TextInput keyboardType="numeric" placeholder="change amount" />
+      <Text>Counter: {counter.amount}</Text>
+
+      <TextInput
+        onSubmitEditing={event =>
+          dispatch(setAction(Number.parseInt(event.nativeEvent.text)))
+        }
+        keyboardType="numeric"
+        placeholder="change amount"
+      />
 
       <View style={styles.floatingView}>
-        <TouchableOpacity style={styles.floatingButton}>
+        <TouchableOpacity
+          style={styles.floatingButton}
+          onPress={() => dispatch(incrementAction())}>
           <Text>+</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.floatingButton}>
+        <TouchableOpacity
+          style={styles.floatingButton}
+          onPress={() => dispatch(decrementAction())}>
           <Text>-</Text>
         </TouchableOpacity>
       </View>
@@ -45,3 +63,5 @@ const styles = StyleSheet.create({
     margin: 6,
   },
 });
+
+export default connector(CounterScreen);

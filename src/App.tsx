@@ -7,18 +7,25 @@ import React from 'react';
 import {StatusBar, useColorScheme} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import MyNavigator from './navigation/MyNavigator';
+import {Provider} from 'react-redux';
+import {store, persistedStore} from './store/MyGlobalStore';
+import {PersistGate} from 'redux-persist/integration/react';
 
 export default function App() {
   const isDarkMode = useColorScheme() === 'dark';
 
   return (
-    <NavigationContainer>
-      <StatusBar
-        translucent={false}
-        backgroundColor={isDarkMode ? 'black' : 'white'}
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-      />
-      <MyNavigator />
-    </NavigationContainer>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistedStore}>
+        <NavigationContainer>
+          <StatusBar
+            translucent={false}
+            backgroundColor={isDarkMode ? 'black' : 'white'}
+            barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+          />
+          <MyNavigator />
+        </NavigationContainer>
+      </PersistGate>
+    </Provider>
   );
 }

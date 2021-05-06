@@ -137,6 +137,24 @@
 3. https://developer.mozilla.org/ko/docs/Web/CSS/CSS_Flexible_Box_Layout/Aligning_Items_in_a_Flex_Container 이거 보고
 4. 도움 많이 받았다.
 
+### Redux 설치하고 쓰기
+
+1. `npm i redux react-redux`
+2. `npm i -D @types/react-redux`
+3. `npm i @reduxjs/toolkit`
+4. `npm install @react-native-async-storage/async-storage`
+5. `npm install redux-persist`
+
+### Typescript와 Redux
+
+1. 이 글 아주 도움됨: https://react-redux.js.org/using-react-redux/usage-with-typescript
+2. `connect`에 인자로 넘겨줄 `mapStateToProps`의 인자에 state 타입을 명시해 주어야 `ConnectedProps`가 동작함.
+
+### Redux toolkit
+
+1. `createAction`, `createReducer`, `configureStore` 아주 도움됨.
+2. https://www.imaginarycloud.com/blog/react-native-redux/ 여기 아주 좋은 예시!
+
 ## 오늘의 교훈
 
 ### 2021.5.4
@@ -154,3 +172,4 @@
 ### 2021.5.6
 
 - 레이아웃 안드로이드로만 하다가 FlexBox 접하니까 어지럽다,,
+- 단방향 데이터 전달 신선하다. 속에서 무슨 일이 일어나는지는 모르겠지만 일단 덮어두고 있는 중...
