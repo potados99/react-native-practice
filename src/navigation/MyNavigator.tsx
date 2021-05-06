@@ -1,9 +1,10 @@
 import React from 'react';
-import HomeScreen from '../home/HomeScreen';
-import SettingsStackScreen from '../settings/SettingsStackScreen';
+import HomeScreen from '../features/home/HomeScreen';
+import CounterScreen from '../features/counter/CounterScreen';
+import SettingsStackScreen from '../features/settings/SettingsStackScreen';
 import SimpleTabNavigator, {
   SimpleTabNavigatorConfig,
-} from '../../components/SimpleTabNavigator';
+} from '../components/SimpleTabNavigator';
 
 const config: SimpleTabNavigatorConfig = {
   tabs: [
@@ -11,6 +12,11 @@ const config: SimpleTabNavigatorConfig = {
       name: 'Home',
       iconName: focused => (focused ? 'home' : 'home-outline'),
       component: HomeScreen,
+    },
+    {
+      name: 'Counter',
+      iconName: focused => (focused ? 'paw' : 'paw-outline'),
+      component: CounterScreen,
     },
     {
       name: 'Settings',

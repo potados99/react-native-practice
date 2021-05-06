@@ -121,6 +121,22 @@
 6. OS별 네이티브 네비게이션 동작(인스타그램처럼.. 인스타는 정말 네이티브인 줄 알았다)은 포기하고, `react-navigation`이 제공하는 '페이크' 네비게이션을 쓰기로 했다.
 7. 많은 앱들도 같은 길을 가고 있는 것 같다 (안-심).
 
+### Redux? Flux?
+
+1. https://www.reddit.com/r/iOSProgramming/comments/8yba8r/should_i_go_with_redux_pattern_instead_of_mvvm_or/
+2. https://medium.cobeisfresh.com/level-up-your-react-architecture-with-mvvm-a471979e3f21
+3. https://www.clariontech.com/blog/mvc-vs-flux-vs-redux-the-real-differences
+4. https://www.evozon.com/blog/mvvm-to-flux-back-again-6
+5. https://jongmin92.github.io/2017/02/12/ReactNative/redux-for-starter/
+6. 함 해보자!
+
+### FlexBox
+
+1. https://www.imaginarycloud.com/blog/react-native-redux/ 이거 따라하다가
+2. 레이아웃 감이 안와서
+3. https://developer.mozilla.org/ko/docs/Web/CSS/CSS_Flexible_Box_Layout/Aligning_Items_in_a_Flex_Container 이거 보고
+4. 도움 많이 받았다.
+
 ## 오늘의 교훈
 
 ### 2021.5.4
@@ -134,3 +150,7 @@
 
 - 아니무슨 네비게이션 하나 하는데 선택지가 이렇게 많아!
 - 인스타나 페이스북은 자기네들이 쓰는 라이브러리는 절대 안 푼다...ㅂㄷㅂㄷ
+
+### 2021.5.6
+
+- 레이아웃 안드로이드로만 하다가 FlexBox 접하니까 어지럽다,,

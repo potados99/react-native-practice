@@ -6,7 +6,7 @@
 import React from 'react';
 import {StatusBar, useColorScheme} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
-import MyNavigator from './features/navigation/MyNavigator';
+import MyNavigator from './navigation/MyNavigator';
 
 export default function App() {
   const isDarkMode = useColorScheme() === 'dark';

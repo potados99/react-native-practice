@@ -3,6 +3,7 @@ import {Button, Text, View} from 'react-native';
 
 import {SettingsStackParamList} from './SettingsStackScreen';
 import {StackNavigationProp} from '@react-navigation/stack';
+import palette from '../../res/palette';
 
 type Props = {
   navigation: StackNavigationProp<SettingsStackParamList, 'Settings'>;
@@ -10,16 +11,18 @@ type Props = {
 
 export default function SettingsScreen({navigation}: Props) {
   return (
-    <View>
+    <View style={palette.centeringContainer}>
       <Text>Hi!!!</Text>
-      <Button
-        title="Click me!"
-        onPress={() =>
-          navigation.navigate('Profile', {
-            userId: 'haha',
-          })
-        }
-      />
+      <View style={palette.bottomFullWidth}>
+        <Button
+          title="Click me!"
+          onPress={() =>
+            navigation.navigate('Profile', {
+              userId: 'haha',
+            })
+          }
+        />
+      </View>
     </View>
   );
 }
