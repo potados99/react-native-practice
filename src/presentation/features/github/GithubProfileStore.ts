@@ -1,20 +1,22 @@
 import GithubUser from '../../../data/entities/GithubUser';
-import {action, observable, runInAction} from 'mobx';
+import {makeAutoObservable, runInAction} from 'mobx';
 import githubRepository from '../../../data/repositories/GithubRepository';
 
 export default class GithubProfileStore {
-  @observable
-  public currentUser = observable.box(new GithubUser());
+  public currentUser = new GithubUser();
 
-  @action
+  constructor() {
+    makeAutoObservable(this);
+  }
+
   fetchUserInfo(userId: string) {
     githubRepository.getUserInfo(userId).then(({data, status}) => {
       runInAction(() => {
-        this.currentUser.set({
+        this.currentUser = {
           id: data.login,
           name: data.name,
           bio: data.bio,
-        });
+        };
       });
     });
   }

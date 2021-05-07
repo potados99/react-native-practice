@@ -1,27 +1,21 @@
-import {action, observable, runInAction} from 'mobx';
+import {makeAutoObservable, observable} from 'mobx';
 
 export default class CounterStore {
-  @observable
   public counterValue = observable.box(0);
 
-  @action
+  constructor() {
+    makeAutoObservable(this);
+  }
+
   increase() {
-    runInAction(() => {
-      this.counterValue.set(this.counterValue.get() + 1);
-    });
+    this.counterValue.set(this.counterValue.get() + 1);
   }
 
-  @action
   decrease() {
-    runInAction(() => {
-      this.counterValue.set(this.counterValue.get() - 1);
-    });
+    this.counterValue.set(this.counterValue.get() - 1);
   }
 
-  @action
   set(amount: number) {
-    runInAction(() => {
-      this.counterValue.set(amount);
-    });
+    this.counterValue.set(amount);
   }
 }

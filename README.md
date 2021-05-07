@@ -206,6 +206,12 @@
 7. 다른 예제 코드(https://woowabros.github.io/experience/2019/01/02/kimcj-react-mobx.html) 라이브데이터마냥 감싸는 부분이 안보여서 그냥 썼는데 잘못된 시도였다.
 8. 그 사이에 버전이 얼마나 바뀐거야..ㅠㅠ
 
+### MobX 데코레이터 멈춰!
+
+1. 아니 저 데코레이터 대신에 생성장에 `makeAutoObservable(this)` 써주니 모든 것이 예상한 대로 돌아간다..ㅂㄷㅂㄷ
+2. 도움 많이 받은 글: https://michel.codes/blogs/mobx6
+3. 데코레이터 쓴다고 난리친거 다 되돌릴거다..ㅂㄷㅂㄷ
+4. 스토어에서 데코레이터 빼고, 컴포넌트에는 놔뒀다.
 
 ## 오늘의 교훈
 
