@@ -21,9 +21,7 @@ export default class CounterScreen extends React.Component<{
 
     return (
       <View style={palette.centeringContainer}>
-        <Text style={palette.textPrimary}>
-          Counter: {store.counterValue.get()}
-        </Text>
+        <Text style={palette.textPrimary}>Counter: {store.counterValue}</Text>
 
         <TextInput
           onSubmitEditing={event =>

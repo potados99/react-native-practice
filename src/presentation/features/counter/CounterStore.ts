@@ -1,21 +1,21 @@
 import {makeAutoObservable, observable} from 'mobx';
 
 export default class CounterStore {
-  public counterValue = observable.box(0);
+  public counterValue = 0;
 
   constructor() {
     makeAutoObservable(this);
   }
 
   increase() {
-    this.counterValue.set(this.counterValue.get() + 1);
+    this.counterValue += 1;
   }
 
   decrease() {
-    this.counterValue.set(this.counterValue.get() - 1);
+    this.counterValue -= 1;
   }
 
   set(amount: number) {
-    this.counterValue.set(amount);
+    this.counterValue = amount;
   }
 }
