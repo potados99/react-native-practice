@@ -17,11 +17,16 @@ type Props = {
 @inject(({githubProfileStore}: RootStore) => ({store: githubProfileStore}))
 @observer
 export default class DetailScreen extends React.Component<Props> {
-  render() {
-    const {route, navigation, store} = this.props;
+  componentDidMount() {
+    const {route, store} = this.props;
     const {userId} = route.params;
 
+    // This should be in componentDidMount!! not render!!!!!!!!!!
     store.fetchUserInfo(userId);
+  }
+
+  render() {
+    const {navigation, store} = this.props;
 
     return (
       <View style={palette.centeringContainer}>
