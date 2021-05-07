@@ -21,7 +21,6 @@ export default class DetailScreen extends React.Component<Props> {
     const {route, store} = this.props;
     const {userId} = route.params;
 
-    // This should be in componentDidMount!! not render!!!!!!!!!!
     store.fetchUserInfo(userId);
   }
 
@@ -30,12 +29,7 @@ export default class DetailScreen extends React.Component<Props> {
 
     return (
       <View style={palette.centeringContainer}>
-        <Text
-          style={{
-            margin: 42,
-          }}>
-          {store.currentUser?.bio}
-        </Text>
+        <Text style={{margin: 42}}>{store.currentUser.get().bio}</Text>
         <Button title="OK" onPress={() => navigation.goBack()} />
       </View>
     );
