@@ -10,6 +10,7 @@ import {
 import {inject, observer} from 'mobx-react';
 import RootStore from '../../../store/RootStore';
 import CounterStore from './CounterStore';
+import color from '../../res/color';
 
 @inject(({counterStore}: RootStore) => ({store: counterStore}))
 @observer
@@ -21,13 +22,14 @@ export default class CounterScreen extends React.Component<{
 
     return (
       <View style={palette.centeringContainer}>
-        <Text style={palette.textPrimary}>Counter: {store.counterValue}</Text>
+        <Text style={styles.label}>Counter: {store.counterValue}</Text>
 
         <TextInput
           onSubmitEditing={event =>
             store.set(Number.parseInt(event.nativeEvent.text))
           }
-          style={palette.textSecondary}
+          style={styles.input}
+          placeholderTextColor={color.textTertiary}
           keyboardType="numeric"
           returnKeyType="done"
           placeholder="change amount"
@@ -66,5 +68,14 @@ const styles = StyleSheet.create({
     width: 55,
     borderRadius: 50,
     margin: 6,
+  },
+  label: {
+    ...palette.textPrimary,
+    fontSize: 30,
+  },
+  input: {
+    ...palette.textSecondary,
+    fontSize: 20,
+    margin: 12,
   },
 });
