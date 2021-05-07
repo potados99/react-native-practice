@@ -183,6 +183,11 @@
 8. 다만 TouchableNativeFeedback가 border radius가 있는 뷰의 끄트머리를 반영하지 못하는 문제가 있었으나 해결.
 9. https://github.com/facebook/react-native/issues/6480 여기 자세히 나와있음.
 
+### MobX가 나은 것 같아요..나한테는...
+
+1. https://woowabros.github.io/experience/2019/01/02/kimcj-react-mobx.html
+2. Redux 너무 방탕해...
+
 ## 오늘의 교훈
 
 ### 2021.5.4

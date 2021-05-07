@@ -5,6 +5,9 @@ import {
   StackNavigationConfig,
   StackNavigationOptions,
 } from '@react-navigation/stack/lib/typescript/src/types';
+import {Platform} from 'react-native';
+import BackIcon from './BackIcon';
+import color from '../res/color';
 
 export type SimpleStackNavigatorConfig = {
   screens: NavigationScreen[];
@@ -29,15 +32,10 @@ export default function SimpleStackNavigator<
 
   return (
     <Stack.Navigator
-      mode={config.stackNavigationConfig?.mode}
-      headerMode={config.stackNavigationConfig?.headerMode}
-      keyboardHandlingEnabled={
-        config.stackNavigationConfig?.keyboardHandlingEnabled
-      }
-      detachInactiveScreens={
-        config.stackNavigationConfig?.detachInactiveScreens
-      }
+      {...defaultStackNavigationConfig}
+      {...config.stackNavigationConfig}
       screenOptions={{
+        ...defaultStackHeaderCommonOptions,
         ...config.stackHeaderCommonOptions,
         ...TransitionPresets.SlideFromRightIOS,
       }}>
@@ -52,3 +50,22 @@ export default function SimpleStackNavigator<
     </Stack.Navigator>
   );
 }
+
+/*--------------------- Default settings here --------------------*/
+
+const defaultStackNavigationConfig: StackNavigationConfig = {
+  headerMode: 'screen',
+};
+
+const defaultStackHeaderCommonOptions: StackHeaderOptions = {
+  headerBackTitleVisible: false,
+  headerTitleStyle: {
+    fontWeight: 'bold',
+  },
+  headerTintColor: color.textPrimary,
+  headerTruncatedBackTitle: undefined,
+  headerLeftContainerStyle: {
+    left: Platform.OS === 'ios' ? 12 : 0,
+  },
+  headerBackImage: () => <BackIcon />,
+};

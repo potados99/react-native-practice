@@ -1,10 +1,10 @@
 import React from 'react';
 import HomeScreen from '../features/home/HomeScreen';
 import CounterScreen from '../features/counter/CounterScreen';
-import SettingsStackScreen from '../features/settings/SettingsStackScreen';
 import SimpleTabNavigator, {
   SimpleTabNavigatorConfig,
 } from '../components/SimpleTabNavigator';
+import GithubProfileScreen from '../features/github/GithubProfileScreen';
 
 const config: SimpleTabNavigatorConfig = {
   tabs: [
@@ -19,9 +19,9 @@ const config: SimpleTabNavigatorConfig = {
       component: CounterScreen,
     },
     {
-      name: 'Settings',
-      iconName: focused => (focused ? 'settings' : 'settings-outline'),
-      component: SettingsStackScreen,
+      name: 'GitHub',
+      iconName: focused => (focused ? 'code' : 'code-outline'),
+      component: GithubProfileScreen,
     },
   ],
 
