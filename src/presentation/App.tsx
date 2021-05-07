@@ -12,7 +12,7 @@ import {
 } from '@react-navigation/native';
 import MyNavigator from './navigation/MyNavigator';
 import {Provider} from 'react-redux';
-import {store, persistedStore} from './store/MyGlobalStore';
+import {store, persistedStore} from '../store/MyGlobalStore';
 import {PersistGate} from 'redux-persist/integration/react';
 
 export default function App() {

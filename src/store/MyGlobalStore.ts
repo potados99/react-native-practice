@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import counterReducer from '../features/counter/CounterReducer';
+import counterReducer from '../presentation/features/counter/CounterReducer';
 import {persistStore, persistReducer} from 'redux-persist';
 import {configureStore, getDefaultMiddleware} from '@reduxjs/toolkit';
 import {
