@@ -187,6 +187,13 @@
 
 1. https://woowabros.github.io/experience/2019/01/02/kimcj-react-mobx.html
 2. Redux 너무 방탕해...
+3. 자자 Reudx 버리고 MobX로 갑시다 ㅎㅎ
+4. `npm i mobx`
+5. `npm i mobx-react`
+6. `npm i core-decorators`
+7. `tsconfig.json`에서 `experimentalDecorators`와 `useDefineForClassFields` `true`로.
+8. 왜인지는 모르겠지만 `npm i -D @babel/plugin-proposal-decorators` 후 `babel.config.js`에 플러그인 넣어주어야 함..
+9. 아니 망할 [여기 설명](https://mobx.js.org/enabling-decorators.html#babel-7)대로 해도 렌더링 바로 안되는 문제 여전..
 
 ## 오늘의 교훈
 

@@ -17,13 +17,17 @@ type Props = {
 
 export default class ListScreen extends React.Component<Props> {
   render() {
-    const {navigation} = this.props;
-
     const exampleListItems: GithubProfileListItem[] = [
       {
         key: 'potados99',
         title: 'Potados',
         userId: 'potados99',
+        destination: 'Detail',
+      },
+      {
+        key: 'hambp',
+        title: 'HamBP',
+        userId: 'hambp',
         destination: 'Detail',
       },
     ];
@@ -35,9 +39,7 @@ export default class ListScreen extends React.Component<Props> {
             height: '100%' /*prevent last item clipping*/,
           }}
           data={exampleListItems}
-          renderItem={item => (
-            <ListItem item={item.item} navigation={navigation} />
-          )}
+          renderItem={item => <ListItem {...this.props} item={item.item} />}
         />
       </View>
     );

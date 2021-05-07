@@ -1,8 +1,5 @@
 import React from 'react';
 import palette from '../../res/palette';
-import {CounterState} from './CounterReducer';
-import {connect, ConnectedProps} from 'react-redux';
-import {setAction, decrementAction, incrementAction} from './CounterActions';
 import {
   StyleSheet,
   Text,
@@ -10,54 +7,49 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {useTheme} from '@react-navigation/native';
+import {inject, observer} from 'mobx-react';
+import RootStore from '../../../store/RootStore';
+import CounterStore from './CounterStore';
 
-const connector = connect((state: CounterState) => state);
+@inject(({counterStore}: RootStore) => ({store: counterStore}))
+@observer
+export default class CounterScreen extends React.Component<{
+  store: CounterStore;
+}> {
+  render() {
+    const {store} = this.props;
 
-interface Props extends ConnectedProps<typeof connector> {}
+    return (
+      <View style={palette.centeringContainer}>
+        <Text style={palette.textPrimary}>
+          Counter: {store.counterValue.get()}
+        </Text>
 
-function CounterScreen({counter, dispatch}: Props) {
-  const theme = useTheme();
+        <TextInput
+          onSubmitEditing={event =>
+            store.set(Number.parseInt(event.nativeEvent.text))
+          }
+          style={palette.textSecondary}
+          keyboardType="numeric"
+          returnKeyType="done"
+          placeholder="change amount"
+        />
 
-  const themedColor = {
-    color: theme.colors.text,
-    borderColor: theme.colors.text,
-  };
-
-  return (
-    <View style={palette.centeringContainer}>
-      <Text style={themedColor}>Counter: {counter.amount}</Text>
-
-      <TextInput
-        onSubmitEditing={event =>
-          dispatch(setAction(Number.parseInt(event.nativeEvent.text)))
-        }
-        style={themedColor}
-        keyboardType="numeric"
-        returnKeyType="done"
-        placeholder="change amount"
-      />
-
-      <View style={styles.floatingView}>
-        <TouchableOpacity
-          style={{
-            ...styles.floatingButton,
-            ...themedColor,
-          }}
-          onPress={() => dispatch(incrementAction())}>
-          <Text style={themedColor}>+</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={{
-            ...styles.floatingButton,
-            ...themedColor,
-          }}
-          onPress={() => dispatch(decrementAction())}>
-          <Text style={themedColor}>-</Text>
-        </TouchableOpacity>
+        <View style={styles.floatingView}>
+          <TouchableOpacity
+            style={styles.floatingButton}
+            onPress={() => store.increase()}>
+            <Text style={palette.textSecondary}>+</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.floatingButton}
+            onPress={() => store.decrease()}>
+            <Text style={palette.textSecondary}>-</Text>
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
-  );
+    );
+  }
 }
 
 const styles = StyleSheet.create({
@@ -78,5 +70,3 @@ const styles = StyleSheet.create({
     margin: 6,
   },
 });
-
-export default connector(CounterScreen);
