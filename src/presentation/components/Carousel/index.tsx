@@ -1,78 +1,45 @@
 import React from 'react';
 import {
+  Dimensions,
   ListRenderItemInfo,
+  Platform,
   ScrollView,
-  Text,
-  View,
   VirtualizedListProps,
 } from 'react-native';
-import {styles} from './styles';
 
-export const Carousel = <ItemT extends any>(
-  props: VirtualizedListProps<ItemT> & {
+export default class Carousel<ItemT = any> extends React.Component<
+  VirtualizedListProps<ItemT> & {
     data: ReadonlyArray<ItemT>;
-    itemsPerInterval: number;
-  },
-) => {
-  const {data, renderItem, style} = props;
-  const itemsPerInterval =
-    props.itemsPerInterval === undefined ? 1 : props.itemsPerInterval;
-
-  const [interval, setInterval] = React.useState(1);
-  const [intervals, setIntervals] = React.useState(1);
-  const [width, setWidth] = React.useState(0);
-
-  const init = (width: number) => {
-    // initialise width
-    setWidth(width);
-    // initialise total intervals
-    const totalItems = data.length;
-    setIntervals(Math.ceil(totalItems / itemsPerInterval));
-  };
-
-  const getInterval = (offset: number) => {
-    for (let i = 1; i <= intervals; i++) {
-      if (offset + 1 < (width / intervals) * i) {
-        return i;
-      }
-      if (i === intervals) {
-        return i;
-      }
-    }
-
-    return 0;
-  };
-
-  let bullets = [];
-  for (let i = 1; i <= intervals; i++) {
-    bullets.push(
-      <Text
-        key={i}
-        style={{
-          ...styles.bullet,
-          opacity: interval === i ? 0.5 : 0.1,
-        }}>
-        &bull;
-      </Text>,
-    );
+    itemWidth: number;
+    gap: number;
   }
+> {
+  render() {
+    const {data, renderItem, style, itemWidth, gap} = this.props;
 
-  return (
-    <View style={styles.container}>
+    const screenWidth = Dimensions.get('window').width;
+    const numberOfItems = data.length;
+
+    const sideSpaces = screenWidth - itemWidth;
+    const itemSpaces = itemWidth * numberOfItems;
+    const gapSpaces = gap * (numberOfItems - 1);
+
+    const width = sideSpaces + itemSpaces + gapSpaces;
+
+    return (
       <ScrollView
+        style={style}
         horizontal={true}
         contentContainerStyle={{
-          ...styles.scrollView,
-          width: `${100 * intervals}%`,
+          paddingHorizontal: sideSpaces / 2 - gap / 2, // 허허 안드로이드에서만 되네 허허...
+          overflow: 'visible',
+          width: width,
         }}
         showsHorizontalScrollIndicator={false}
-        onContentSizeChange={(w, h) => init(w)}
-        onScroll={data => {
-          setWidth(data.nativeEvent.contentSize.width);
-          setInterval(getInterval(data.nativeEvent.contentOffset.x));
-        }}
-        scrollEventThrottle={200}
-        pagingEnabled
+        scrollEventThrottle={100}
+        pagingEnabled={true}
+        snapToInterval={itemWidth + gap + (Platform.OS === 'ios' ? 0 : 0)}
+        snapToAlignment={'center'}
         decelerationRate="fast">
         {data.map((item: ItemT, index: number) => {
           const itemInfo: ListRenderItemInfo<ItemT> = {
@@ -88,9 +55,6 @@ export const Carousel = <ItemT extends any>(
           return renderItem?.call(undefined, itemInfo);
         })}
       </ScrollView>
-      <View style={styles.bullets}>{bullets}</View>
-    </View>
-  );
-};
-
-export default Carousel;
+    );
+  }
+}

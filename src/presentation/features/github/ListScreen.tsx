@@ -1,10 +1,17 @@
 import React from 'react';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {GithubProfileParamList} from './GithubProfileScreen';
-import {Dimensions, FlatList, Text, View, ViewProps} from 'react-native';
+import {
+  Dimensions,
+  FlatList,
+  StyleSheet,
+  Text,
+  View,
+  ViewProps,
+} from 'react-native';
 import CardView from '../../components/CardView';
 import Carousel from '../../components/Carousel';
-import Stat from '../../components/Carousel/Stat';
+import {get} from 'mobx';
 
 type GithubProfileSectionItem = {
   key: string;
@@ -33,8 +40,16 @@ export default class ListScreen extends React.Component<Props> {
             userId: 'potados99',
           },
           {
+            key: 'gheejeon',
+            userId: 'GHeeJeon',
+          },
+          {
             key: 'hambp',
             userId: 'hambp',
+          },
+          {
+            key: 'bbaktaeho',
+            userId: 'bbaktaeho',
           },
         ],
       },
@@ -42,10 +57,6 @@ export default class ListScreen extends React.Component<Props> {
         key: 'visited',
         title: 'Visited',
         profiles: [
-          {
-            key: 'gheejeon',
-            userId: 'GHeeJeon',
-          },
           {
             key: 'ryuspace',
             userId: 'ryuspace',
@@ -80,8 +91,6 @@ class SectionItem extends React.Component<
     const {navigation} = this.props;
     const {profiles} = this.props.section;
 
-    const screenWidth = Dimensions.get('window').width;
-
     return (
       <View>
         <Text
@@ -96,34 +105,16 @@ class SectionItem extends React.Component<
         </Text>
 
         <Carousel
-          itemsPerInterval={3}
-          data={[
-            {
-              label: 'TODAY',
-              value: 1,
-            },
-            {
-              label: 'THIS WEEK',
-              value: 39,
-            },
-            {
-              label: 'THIS MONTH',
-              value: 120,
-            },
-            {
-              label: 'YESTERDAY',
-              value: 3,
-            },
-            {
-              label: 'LAST WEEK',
-              value: 25,
-            },
-            {
-              label: 'LAST MONTH',
-              value: 175,
-            },
-          ]}
-          renderItem={i => <Stat key={i.index} {...i.item} />}
+          data={profiles}
+          itemWidth={120}
+          gap={16}
+          renderItem={i => (
+            <ProfileItem
+              key={i.index}
+              navigation={navigation}
+              profile={i.item}
+            />
+          )}
         />
       </View>
     );
@@ -141,6 +132,7 @@ class ProfileItem extends React.Component<
 
     return (
       <CardView
+        style={styles.profileCard}
         onPress={() => navigation.navigate('Detail', {userId: profile.userId})}>
         <Text
           style={{
@@ -152,3 +144,10 @@ class ProfileItem extends React.Component<
     );
   }
 }
+
+const styles = StyleSheet.create({
+  profileCard: {
+    width: 120,
+    marginHorizontal: 8,
+  },
+});
