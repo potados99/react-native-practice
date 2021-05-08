@@ -1,17 +1,9 @@
 import React from 'react';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {GithubProfileParamList} from './GithubProfileScreen';
-import {
-  Dimensions,
-  FlatList,
-  StyleSheet,
-  Text,
-  View,
-  ViewProps,
-} from 'react-native';
+import {FlatList, Text, View, ViewProps} from 'react-native';
 import CardView from '../../components/CardView';
 import Carousel from '../../components/Carousel';
-import {get} from 'mobx';
 
 type GithubProfileSectionItem = {
   key: string;
@@ -97,7 +89,6 @@ class SectionItem extends React.Component<
           style={{
             marginHorizontal: 12,
             marginTop: 16,
-            marginBottom: 8,
             fontSize: 24,
             fontWeight: 'bold',
           }}>
@@ -105,8 +96,10 @@ class SectionItem extends React.Component<
         </Text>
 
         <Carousel
-          gap={16}
-          itemWidth={300}
+          style={{overflow: 'visible'}}
+          contentContainerStyle={{paddingVertical: 12}} // escape shadow
+          gap={12}
+          itemWidth={'88%'}
           data={profiles}
           renderItem={i => (
             <ProfileItem

@@ -15,21 +15,37 @@ import {
  * It calculates a size of sneak by width of item and a gap between items.
  */
 export default class Carousel<ItemT = any> extends React.Component<
-  FlatListProps<ItemT> & {gap: number; itemWidth: number}
+  FlatListProps<ItemT> & {gap: number; itemWidth: number | string}
 > {
   private IS_ANDROID = Platform.OS === 'android';
+  private SCREEN_WIDTH = Dimensions.get('window').width;
+
+  private get itemWidth() {
+    const {itemWidth} = this.props;
+
+    if (typeof itemWidth === 'number') {
+      return itemWidth;
+    }
+
+    const isPercentageRepresentation = /^\d{1,3}(\.\d+)?%$/.test(itemWidth);
+    if (isPercentageRepresentation) {
+      return (this.SCREEN_WIDTH * parseInt(itemWidth)) / 100;
+    } else {
+      console.error(`Carousel: invalid itemWidth: ${itemWidth}`);
+      return 0;
+    }
+  }
 
   private getDimensions() {
-    const {itemWidth, gap} = this.props;
+    const {gap} = this.props;
 
-    const screenWidth = Dimensions.get('window').width;
-    const sideSpaces = screenWidth - itemWidth;
+    const sideSpaces = this.SCREEN_WIDTH - this.itemWidth;
 
     return {
       gap,
-      itemWidth,
-      screenWidth,
-      onePageInterval: itemWidth + gap,
+      itemWidth: this.itemWidth,
+      screenWidth: this.SCREEN_WIDTH,
+      onePageInterval: this.itemWidth + gap,
       itemEdgeToScreenEdge: sideSpaces / 2,
       horizontalPaddingAmongList: sideSpaces / 2 - gap / 2,
       horizontalMarginBetweenItems: gap / 2,
@@ -56,6 +72,7 @@ export default class Carousel<ItemT = any> extends React.Component<
           key={index}
           style={{
             width: itemWidth,
+            overflow: 'visible',
             marginHorizontal: horizontalMarginBetweenItems,
           }}>
           {renderItem?.call(undefined, itemInfo)}
@@ -97,7 +114,7 @@ export default class Carousel<ItemT = any> extends React.Component<
   }
 
   render() {
-    const {data, style} = this.props;
+    const {data, style, contentContainerStyle} = this.props;
     const {onePageInterval} = this.getDimensions();
     const platformSpecificProps = this.getPlatformSpecificPropsForScrollView();
 
@@ -111,7 +128,11 @@ export default class Carousel<ItemT = any> extends React.Component<
         disableIntervalMomentum={true}
         snapToInterval={onePageInterval}
         showsHorizontalScrollIndicator={false}
-        {...platformSpecificProps}>
+        {...platformSpecificProps}
+        contentContainerStyle={[
+          {...platformSpecificProps.contentContainerStyle},
+          contentContainerStyle, // override
+        ]}>
         {this.renderItems(data)}
       </ScrollView>
     );
