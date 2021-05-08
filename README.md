@@ -221,8 +221,20 @@
 4. 안드로이드에서는 JS Dev 켜면 맛탱이가 간대서 끄고 돌리려는데 `'decorators-legacy' isn't currently enabled` 에러 부활...
 5. `npm install --save-dev @babel/plugin-proposal-decorators` 다시 간다
 6. 라이브러리 때려치고(잘 작동도 안함;) [이거](https://rossbulat.medium.com/react-native-carousels-with-horizontal-scroll-views-60b0587a670c)로 간다!!
+7. 한참 삽질하다가(하...)
+8. iOS에서만 리스트 양끝 패딩이 달리 적용되는거 보고 한숨쉬다가
+9. 이 글 보고 원인 찾음: https://medium.com/nerd-for-tech/react-native-create-a-horizontal-snap-scrollview-e1d01ac3ba09
+10. android에서는 `paddingHorizontal`을 스타일에 써주면 되고, ios에서는 `contentInset`과 `contentOffset`이 필요했다...
+11. 휴
 
+### 안드로이드 릴리즈 빌드가 안된다..?
 
+1. `assembleDebug`는 되는데 `assembleRelease`는 터진다.
+2. 원인은 리소스 중복이라고 한다.
+3. [여기](https://stackoverflow.com/a/57975287/11929317)서 답을 찾았다.
+4. 그냥 리소스 폴더 삭제해버리면(!) 해결.
+5. `rm -rf ./android/app/src/main/res/drawable-*`
+6. `rm -rf ./android/app/src/main/res/raw`
 
 ## 오늘의 교훈
 
@@ -249,3 +261,9 @@
 - 이게 맞는건가 싶다... 휴
 - RN을 잘 몰라서 저지르는 실수들이 점점 많아진다. 글 좀 읽어야겠다 이제..
 - 제대로 된 레퍼런스를 찾고 싶은데 이쪽 바닥이 너무 코드 자유도가 높아서..허허 맘에드는 형식 레퍼런스가 있을까....
+
+### 2021.5.8
+
+- 간단한 carousel 하나 예제 수준으로 만드느라 하루 다 갔다. 
+- 오늘도 그냥 때려치고 네이티브로 넘어가서 빨리 iOS 배울까 고민의 늪에 빠졌었다.
+- 간신히 극복했다. 나머지는 내일 해야지 하...

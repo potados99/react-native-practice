@@ -105,9 +105,9 @@ class SectionItem extends React.Component<
         </Text>
 
         <Carousel
-          data={profiles}
-          itemWidth={120}
           gap={16}
+          itemWidth={300}
+          data={profiles}
           renderItem={i => (
             <ProfileItem
               key={i.index}
@@ -132,22 +132,9 @@ class ProfileItem extends React.Component<
 
     return (
       <CardView
-        style={styles.profileCard}
         onPress={() => navigation.navigate('Detail', {userId: profile.userId})}>
-        <Text
-          style={{
-            fontSize: 18,
-          }}>
-          {`Profile of ${profile.userId}`}
-        </Text>
+        <Text style={{fontSize: 18}}>{`Profile of ${profile.userId}`}</Text>
       </CardView>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  profileCard: {
-    width: 120,
-    marginHorizontal: 8,
-  },
-});
