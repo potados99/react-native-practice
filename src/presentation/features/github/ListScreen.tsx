@@ -4,6 +4,7 @@ import {GithubProfileParamList} from './GithubProfileScreen';
 import {Dimensions, FlatList, Text, View, ViewProps} from 'react-native';
 import CardView from '../../components/CardView';
 import Carousel from '../../components/Carousel';
+import Stat from '../../components/Carousel/Stat';
 
 type GithubProfileSectionItem = {
   key: string;
@@ -95,9 +96,8 @@ class SectionItem extends React.Component<
         </Text>
 
         <Carousel
-          style="stats"
           itemsPerInterval={3}
-          items={[
+          data={[
             {
               label: 'TODAY',
               value: 1,
@@ -123,6 +123,7 @@ class SectionItem extends React.Component<
               value: 175,
             },
           ]}
+          renderItem={i => <Stat key={i.index} {...i.item} />}
         />
       </View>
     );
