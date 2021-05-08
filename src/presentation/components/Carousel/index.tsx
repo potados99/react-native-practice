@@ -31,15 +31,16 @@ export default class Carousel<ItemT = any> extends React.Component<
         style={style}
         horizontal={true}
         contentContainerStyle={{
-          paddingHorizontal: sideSpaces / 2 - gap / 2, // 허허 안드로이드에서만 되네 허허...
+          paddingHorizontal: sideSpaces / 2 - gap / 2,
           overflow: 'visible',
           width: width,
         }}
         showsHorizontalScrollIndicator={false}
         scrollEventThrottle={100}
         pagingEnabled={true}
-        snapToInterval={itemWidth + gap + (Platform.OS === 'ios' ? 0 : 0)}
+        snapToInterval={itemWidth + gap}
         snapToAlignment={'center'}
+        disableIntervalMomentum={true}
         decelerationRate="fast">
         {data.map((item: ItemT, index: number) => {
           const itemInfo: ListRenderItemInfo<ItemT> = {
