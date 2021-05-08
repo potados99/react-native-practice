@@ -11,3 +11,4 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 # with future versions of 'react-native run-android'.
 # So we run it manually before 'react-native run-android'.
 npx jetify
+

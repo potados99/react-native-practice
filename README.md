@@ -213,6 +213,17 @@
 3. 데코레이터 쓴다고 난리친거 다 되돌릴거다..ㅂㄷㅂㄷ
 4. 스토어에서 데코레이터 빼고, 컴포넌트에는 놔뒀다.
 
+### Carousel 가즈아ㅏㅏㅏ
+
+1. 라이브러리가 제맛이지
+2. `npm install --save react-native-snap-carousel`
+3. `npm install --save @types/react-native-snap-carousel`
+4. 안드로이드에서는 JS Dev 켜면 맛탱이가 간대서 끄고 돌리려는데 `'decorators-legacy' isn't currently enabled` 에러 부활...
+5. `npm install --save-dev @babel/plugin-proposal-decorators` 다시 간다
+6. 라이브러리 때려치고(잘 작동도 안함;) [이거](https://rossbulat.medium.com/react-native-carousels-with-horizontal-scroll-views-60b0587a670c)로 간다!!
+
+
+
 ## 오늘의 교훈
 
 ### 2021.5.4
