@@ -8,7 +8,9 @@ export default {
   textTertiary: '#B7B9C0',
 
   rippleColorLight: '#00000040',
-  rippleColorDark: '#ffffff40',
+  rippleColorDark: '#FFFFFF40',
+
+  dividerColorLight: '#0000001F',
 
   shadowColor: '#555555',
   darkComponentBackground: '#222222',

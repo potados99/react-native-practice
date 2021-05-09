@@ -9,10 +9,12 @@ import {
 } from 'react-native';
 import React from 'react';
 import color from '../res/color';
+import Touchable from './Touchable';
 
 interface Props extends TouchableWithoutFeedbackProps {
   style?: ViewStyle;
   children?: React.ReactNode;
+  touchable?: boolean;
 }
 
 export default class CardView extends React.Component<Props> {
@@ -29,37 +31,18 @@ export default class CardView extends React.Component<Props> {
       </View>
     );
 
-    const cardWithAndroidFeedback = (
-      <TouchableNativeFeedback
-        onPress={e => onPress?.call(undefined, e)}
-        background={TouchableNativeFeedback.Ripple(
-          color.rippleColorLight,
-          false,
-        )}
-        useForeground={true}>
-        {card}
-      </TouchableNativeFeedback>
-    );
-
-    const cardWithIosFeedback = (
-      <TouchableOpacity
-        onPress={e => onPress?.call(undefined, e)}
-        activeOpacity={0.5}>
-        {card}
-      </TouchableOpacity>
-    );
-
-    if (Platform.OS === 'android') {
-      return cardWithAndroidFeedback;
-    } else {
-      return cardWithIosFeedback;
+    if (onPress === undefined) {
+      return card;
     }
+
+    return (
+      <Touchable onPress={e => onPress?.call(undefined, e)}>{card}</Touchable>
+    );
   }
 }
 
 const styles = StyleSheet.create({
   card: {
-    padding: 18,
     overflow: Platform.OS === 'android' ? 'hidden' : 'visible',
     shadowColor: color.shadowColor,
     backgroundColor: color.white,

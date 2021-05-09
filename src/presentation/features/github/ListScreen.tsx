@@ -1,18 +1,20 @@
+import color from '../../res/color';
 import React from 'react';
-import {StackNavigationProp} from '@react-navigation/stack';
-import {GithubProfileParamList} from './GithubProfileScreen';
-import {FlatList, Text, View, ViewProps} from 'react-native';
 import CardView from '../../components/CardView';
 import Carousel from '../../components/Carousel';
+import Touchable from '../../components/Touchable';
+import {divideArray} from '../../../common/utils/Array';
+import ItemSeparator from '../../components/ItemSeparator';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {GithubProfileParamList} from './GithubProfileScreen';
+import {FlatList, StyleSheet, Text, View, ViewProps} from 'react-native';
 
 type GithubProfileSectionItem = {
-  key: string;
   title: string;
   profiles: GithubProfileItem[];
 };
 
 type GithubProfileItem = {
-  key: string;
   userId: string;
 };
 
@@ -22,51 +24,18 @@ interface Props extends ViewProps {
 
 export default class ListScreen extends React.Component<Props> {
   render() {
-    const exampleListItems: GithubProfileSectionItem[] = [
-      {
-        key: 'favorite',
-        title: 'Favorites',
-        profiles: [
-          {
-            key: 'potados99',
-            userId: 'potados99',
-          },
-          {
-            key: 'gheejeon',
-            userId: 'GHeeJeon',
-          },
-          {
-            key: 'hambp',
-            userId: 'hambp',
-          },
-          {
-            key: 'bbaktaeho',
-            userId: 'bbaktaeho',
-          },
-        ],
-      },
-      {
-        key: 'visited',
-        title: 'Visited',
-        profiles: [
-          {
-            key: 'ryuspace',
-            userId: 'ryuspace',
-          },
-        ],
-      },
-    ];
-
     return (
-      <View>
+      <View
+        style={{
+          backgroundColor: color.white,
+        }}>
         <FlatList
-          contentContainerStyle={{
-            height: '100%' /*prevent last item clipping*/,
-          }}
           data={exampleListItems}
           renderItem={item => (
             <SectionItem {...this.props} section={item.item} />
           )}
+          keyExtractor={i => i.title}
+          contentContainerStyle={styles.rootListContentContainer}
         />
       </View>
     );
@@ -85,29 +54,18 @@ class SectionItem extends React.Component<
 
     return (
       <View>
-        <Text
-          style={{
-            marginHorizontal: 12,
-            marginTop: 16,
-            fontSize: 24,
-            fontWeight: 'bold',
-          }}>
-          {this.props.section.title}
-        </Text>
+        <Text style={styles.sectionHeaderText}>{this.props.section.title}</Text>
 
         <Carousel
-          style={{overflow: 'visible'}}
-          contentContainerStyle={{paddingVertical: 12}} // escape shadow
           gap={12}
+          data={divideArray(profiles, 3)}
+          style={styles.sectionCarousel}
           itemWidth={'88%'}
-          data={profiles}
           renderItem={i => (
-            <ProfileItem
-              key={i.index}
-              navigation={navigation}
-              profile={i.item}
-            />
+            <ProfileStackCard navigation={navigation} profiles={i.item} />
           )}
+          keyExtractor={i => i[0].userId}
+          contentContainerStyle={styles.sectionCarouselContentContainer}
         />
       </View>
     );
@@ -115,19 +73,128 @@ class SectionItem extends React.Component<
 }
 
 /**
- * The horizontally placed items in the sections.
+ * Target of horizontal scrolling.
  */
-class ProfileItem extends React.Component<
-  Props & {profile: GithubProfileItem}
+class ProfileStackCard extends React.Component<
+  Props & {profiles: GithubProfileItem[]}
 > {
   render() {
-    const {navigation, profile} = this.props;
+    const {navigation, profiles} = this.props;
 
     return (
-      <CardView
-        onPress={() => navigation.navigate('Detail', {userId: profile.userId})}>
-        <Text style={{fontSize: 18}}>{`Profile of ${profile.userId}`}</Text>
+      <CardView>
+        <FlatList
+          data={profiles}
+          listKey={profiles[0].userId}
+          renderItem={i => (
+            <ProfileItem navigation={navigation} profile={i.item} />
+          )}
+          keyExtractor={i => i.userId}
+          ItemSeparatorComponent={ItemSeparator}
+        />
       </CardView>
     );
   }
 }
+
+/**
+ * End items in the profile stack.
+ */
+
+class ProfileItem extends React.Component<
+  Props & {profile: GithubProfileItem},
+  {lines: number}
+> {
+  state = {
+    lines: 1,
+  };
+
+  render() {
+    const {navigation, profile} = this.props;
+    const {lines} = this.state;
+
+    const navigate = () => {
+      navigation.navigate('Detail', {userId: profile.userId});
+    };
+
+    const setMaxLines = (max: number) => {
+      this.setState({
+        lines: max,
+      });
+    };
+
+    return (
+      <Touchable onPress={() => setMaxLines(5)} onLongPress={() => navigate()}>
+        <View style={styles.profileItemWrapper}>
+          <Text
+            numberOfLines={lines}
+            ellipsizeMode={'tail'}
+            style={{
+              fontSize: 18,
+            }}>
+            {`Profile of ${profile.userId}! Perform a long click to see what's next! Maybe this text will be ellipsized due to its too much length ;)`}
+          </Text>
+        </View>
+      </Touchable>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  /*-------- Root list(vertical) --------*/
+  rootListContentContainer: {
+    height: '100%' /*prevent last item clipping*/,
+  },
+
+  /*-------- Section and stack list(horizontal) --------*/
+  sectionHeaderText: {
+    marginHorizontal: 24,
+    marginTop: 12,
+    fontSize: 24,
+    fontWeight: 'bold',
+  },
+  sectionCarousel: {
+    overflow: 'visible',
+  },
+  sectionCarouselContentContainer: {
+    // For android: prevent elevation shadow clipping.
+    paddingTop: 12,
+    paddingBottom: 16,
+  },
+
+  /*-------- Profile Item  --------*/
+  profileItemWrapper: {
+    padding: 20,
+  },
+});
+
+const exampleListItems: GithubProfileSectionItem[] = [
+  {
+    title: 'Favorites',
+    profiles: [
+      {
+        userId: 'potados99',
+      },
+      {
+        userId: 'GHeeJeon',
+      },
+      {
+        userId: 'hambp',
+      },
+      {
+        userId: 'bbaktaeho',
+      },
+      {
+        userId: 'aa',
+      },
+    ],
+  },
+  {
+    title: 'Visited',
+    profiles: [
+      {
+        userId: 'ryuspace',
+      },
+    ],
+  },
+];
