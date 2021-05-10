@@ -1,37 +1,31 @@
 import {RouteProp} from '@react-navigation/native';
 import React from 'react';
 import {FlatList, StyleSheet, Text, View} from 'react-native';
-import color from '../../res/color';
 import Carousel from '../../components/Carousel';
 import {divideArray} from '../../../common/utils/Array';
 import CardView from '../../components/CardView';
 import ItemSeparator from '../../components/ItemSeparator';
 import Touchable from '../../components/Touchable';
-import {ListPageParamList, ListScreenProps} from './ListScreen';
 import {
   exampleListItems,
   GithubProfileItem,
   GithubProfileSectionItem,
 } from './GitHubProfileData';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {GithubProfileParamList} from './GithubProfileScreen';
+import palette from '../../res/palette';
 
 type Props = {
-  // Stack navigation cannot be given to the ListPage directly
-  // because its parent, TopTabNavigation, does not allow
-  // a custom component creation logic (e.g. renderItem).
-  // Therefore we need to wrap the stack navigation into a route param
-  // of a TopTabNavigation.
-  route: RouteProp<ListPageParamList, 'Today'>;
+  navigation: StackNavigationProp<GithubProfileParamList, 'List'>;
 };
 
 export default class ListPage extends React.Component<Props> {
   render() {
-    const {navigation} = this.props.route.params;
+    const {navigation} = this.props;
 
     return (
       <FlatList
-        style={{
-          backgroundColor: color.white,
-        }}
+        style={palette.whiteBackground}
         data={exampleListItems}
         renderItem={item => (
           <SectionItem navigation={navigation} section={item.item} />
@@ -47,7 +41,7 @@ export default class ListPage extends React.Component<Props> {
  * Section has title and horizontal list of its children
  */
 class SectionItem extends React.Component<
-  ListScreenProps & {section: GithubProfileSectionItem}
+  Props & {section: GithubProfileSectionItem}
 > {
   render() {
     const {navigation} = this.props;
@@ -77,7 +71,7 @@ class SectionItem extends React.Component<
  * Target of horizontal scrolling.
  */
 class ProfileStackCard extends React.Component<
-  ListScreenProps & {profiles: GithubProfileItem[]}
+  Props & {profiles: GithubProfileItem[]}
 > {
   render() {
     const {navigation, profiles} = this.props;
@@ -103,7 +97,7 @@ class ProfileStackCard extends React.Component<
  */
 
 class ProfileItem extends React.Component<
-  ListScreenProps & {profile: GithubProfileItem},
+  Props & {profile: GithubProfileItem},
   {lines: number}
 > {
   state = {

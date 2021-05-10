@@ -27,6 +27,10 @@ const palette = StyleSheet.create({
     color: color.textTertiary,
     fontSize: 12,
   },
+
+  whiteBackground: {
+    backgroundColor: color.white,
+  },
 });
 
 export default palette;

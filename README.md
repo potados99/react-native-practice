@@ -241,6 +241,13 @@
 1. 안드로이드의 TabLayout + ViewPager 같은 것!
 2. `npm install @react-navigation/material-top-tabs react-native-tab-view@^2.16.0`
 
+### Reanimated2?
+
+1. Warning이 자꾸 떠서 보니, `reanimated2`를 설치하란다.
+2. `npm i react-native-reanimated@next`
+3. Babel 플러그인에 `'react-native-reanimated/plugin'` 추가.
+4. 그리고 [얘](https://docs.swmansion.com/react-native-reanimated/docs/installation)가 하란대로 다 해준다.
+5. ~~잘 안 따라하면 문제 생긴다. 에러가 뜨면 잘 따라했는지부터 보자!~~
 
 ## 오늘의 교훈
 
@@ -277,3 +284,7 @@
 ### 2021.5.9
 
 - 정말이지 손이 많이 가는 친구다...ㅎㅎㅎㅎㅎ
+
+### 2021.5.10
+
+- 네이티브 코드 더하다 보니 프로젝트가 갈수록 너덜너덜해지는 것 같다...;
