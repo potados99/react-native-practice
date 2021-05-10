@@ -4,7 +4,7 @@ import CounterScreen from '../features/counter/CounterScreen';
 import SimpleTabNavigator, {
   SimpleTabNavigatorConfig,
 } from '../components/SimpleTabNavigator';
-import GithubProfileScreen from '../features/github/GithubProfileScreen';
+import GithubScreen from '../features/github/GithubScreen';
 
 const config: SimpleTabNavigatorConfig = {
   tabs: [
@@ -21,7 +21,7 @@ const config: SimpleTabNavigatorConfig = {
     {
       name: 'GitHub',
       iconName: focused => (focused ? 'code' : 'code-outline'),
-      component: GithubProfileScreen,
+      component: GithubScreen,
     },
   ],
 

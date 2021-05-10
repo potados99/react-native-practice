@@ -1,13 +1,11 @@
 import React from 'react';
 import {
-  Animated,
   Dimensions,
   FlatListProps,
   ListRenderItemInfo,
   Platform,
   ScrollView,
   View,
-  VirtualizedListProps,
 } from 'react-native';
 
 /**

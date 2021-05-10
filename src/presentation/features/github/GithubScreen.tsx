@@ -6,6 +6,7 @@ import Icon from 'react-native-vector-icons/Feather';
 import ListScreen from './ListScreen';
 import DetailScreen from './DetailScreen';
 import color from '../../res/color';
+import {GithubProfileItem, GithubProfileSectionItem} from './GitHubProfileData';
 
 const config: SimpleStackNavigatorConfig = {
   screens: [
@@ -22,19 +23,16 @@ const config: SimpleStackNavigatorConfig = {
     {
       name: 'Detail',
       component: DetailScreen,
-      options: {
-        headerTitle: '',
-      },
     },
   ],
 };
 
 export type GithubProfileParamList = {
   List: undefined;
-  Detail: {userId: string};
+  Detail: {section: GithubProfileSectionItem};
 };
 
-export default class GithubProfileScreen extends React.Component {
+export default class GithubScreen extends React.Component {
   render() {
     return <SimpleStackNavigator<GithubProfileParamList> config={config} />;
   }
