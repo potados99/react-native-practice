@@ -12,15 +12,20 @@ type Props = {
 
 export default class DetailScreen extends React.Component<Props> {
   render() {
-    const {route, navigation} = this.props;
+    const {route} = this.props;
     const {section} = route.params;
-
-    navigation.setOptions({title: section.title});
 
     return (
       <View>
         <ProfileStackPager profiles={section.profiles} />
       </View>
     );
+  }
+
+  componentDidMount() {
+    const {route, navigation} = this.props;
+    const {section} = route.params;
+
+    navigation.setOptions({title: section.title});
   }
 }
