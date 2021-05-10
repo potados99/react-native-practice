@@ -1,5 +1,11 @@
 import React from 'react';
-import {StyleSheet, Text, View, ViewProps} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  ViewProps,
+} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import color from '../../res/color';
 
@@ -13,16 +19,12 @@ export default class SectionHeader extends React.Component<Props> {
     const {title, onClickMore, style} = this.props;
 
     return (
-      <View style={[styles.container, style]}>
-        <Text style={styles.headerText}>{title}</Text>
-        <Icon
-          onPress={onClickMore}
-          style={styles.moreIcon}
-          name="arrow-right"
-          size={24}
-          color={color.textPrimary}
-        />
-      </View>
+      <TouchableOpacity onPress={onClickMore}>
+        <View style={[styles.container, style]}>
+          <Text style={styles.headerText}>{title}</Text>
+          <Icon name="arrow-right" size={24} color={color.textPrimary} />
+        </View>
+      </TouchableOpacity>
     );
   }
 }
@@ -33,18 +35,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     marginHorizontal: 24,
-    marginTop: 12,
+    marginTop: 16,
   },
 
   headerText: {
     fontSize: 24,
     fontWeight: 'bold',
-  },
-
-  moreIcon: {
-    // Ensure more touchable area.
-    paddingTop: 12,
-    paddingBottom: 6,
-    paddingStart: 55,
   },
 });

@@ -112,13 +112,14 @@ export default class Carousel<ItemT = any> extends React.Component<
   }
 
   render() {
-    const {data, style, contentContainerStyle} = this.props;
+    const {data, bounces, style, contentContainerStyle} = this.props;
     const {onePageInterval} = this.getDimensions();
     const platformSpecificProps = this.getPlatformSpecificPropsForScrollView();
 
     return (
       <ScrollView
         style={style}
+        bounces={bounces}
         horizontal={true}
         decelerationRate="fast"
         scrollEventThrottle={100}
@@ -130,8 +131,7 @@ export default class Carousel<ItemT = any> extends React.Component<
         contentContainerStyle={[
           {...platformSpecificProps.contentContainerStyle},
           contentContainerStyle, // override
-        ]}
-        {...this.props}>
+        ]}>
         {this.renderItems(data)}
       </ScrollView>
     );
