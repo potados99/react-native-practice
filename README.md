@@ -236,6 +236,12 @@
 5. `rm -rf ./android/app/src/main/res/drawable-*`
 6. `rm -rf ./android/app/src/main/res/raw`
 
+### 상단 탭 바와 페이징
+
+1. 안드로이드의 TabLayout + ViewPager 같은 것!
+2. `npm install @react-navigation/material-top-tabs react-native-tab-view@^2.16.0`
+
+
 ## 오늘의 교훈
 
 ### 2021.5.4
@@ -267,3 +273,7 @@
 - 간단한 carousel 하나 예제 수준으로 만드느라 하루 다 갔다. 
 - 오늘도 그냥 때려치고 네이티브로 넘어가서 빨리 iOS 배울까 고민의 늪에 빠졌었다.
 - 간신히 극복했다. 나머지는 내일 해야지 하...
+
+### 2021.5.9
+
+- 정말이지 손이 많이 가는 친구다...ㅎㅎㅎㅎㅎ
