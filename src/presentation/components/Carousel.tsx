@@ -130,7 +130,8 @@ export default class Carousel<ItemT = any> extends React.Component<
         contentContainerStyle={[
           {...platformSpecificProps.contentContainerStyle},
           contentContainerStyle, // override
-        ]}>
+        ]}
+        {...this.props}>
         {this.renderItems(data)}
       </ScrollView>
     );

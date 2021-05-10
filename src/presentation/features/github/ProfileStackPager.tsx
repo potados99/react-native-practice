@@ -17,6 +17,7 @@ export default class ProfileStackPager extends React.Component<{
     return (
       <Carousel
         gap={12}
+        bounces={stackSize !== undefined}
         data={divideArray(profiles, stackSize)}
         style={styles.sectionCarousel}
         itemWidth={'88%'}
@@ -37,6 +38,7 @@ class ProfileStackCard extends React.Component<{
     return (
       <CardView>
         <FlatList
+          bounces={false}
           data={profiles}
           listKey={profiles[0].userId}
           renderItem={i => <ProfileItem profile={i.item} />}
