@@ -34,6 +34,23 @@ export const exampleListItems: GithubProfileSectionItem[] = [
       {
         userId: 'ryuspace',
       },
+      {
+        userId: 'GowoonJ',
+      },
+      {
+        userId: 'bungabear',
+      },
+      {
+        userId: 'soheyonpark0901',
+      },
+    ],
+  },
+  {
+    title: 'Recent',
+    profiles: [
+      {
+        userId: 'olzabi',
+      },
     ],
   },
 ];

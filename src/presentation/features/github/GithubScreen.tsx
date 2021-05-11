@@ -5,7 +5,7 @@ import BackIcon from '../../components/BackIcon';
 import ListScreen from './ListScreen';
 import DetailScreen from './DetailScreen';
 import {StackHeaderOptions} from '@react-navigation/stack/lib/typescript/src/types';
-import {Platform, StyleSheet} from 'react-native';
+import {Platform, StyleSheet, Animated} from 'react-native';
 import {GithubProfileSectionItem} from './GitHubProfileData';
 import {createStackNavigator, TransitionPresets} from '@react-navigation/stack';
 
@@ -30,20 +30,22 @@ export default class GithubScreen extends React.Component {
     };
 
     return (
-      <Stack.Navigator headerMode="screen" screenOptions={screenOptions}>
-        <Stack.Screen
-          name="List"
-          component={ListScreen}
-          options={{
-            headerTitle: () => (
-              <Icon name="code" size={27} color={color.textPrimary} />
-            ),
-            headerTitleAlign: 'center',
-            headerStyle: styles.noSeparator,
-          }}
-        />
-        <Stack.Screen name="Detail" component={DetailScreen} />
-      </Stack.Navigator>
+      <Animated.View style={{flex: 1}}>
+        <Stack.Navigator headerMode="screen" screenOptions={screenOptions}>
+          <Stack.Screen
+            name="List"
+            component={ListScreen}
+            options={{
+              headerTitle: () => (
+                <Icon name="code" size={27} color={color.textPrimary} />
+              ),
+              headerTitleAlign: 'center',
+              headerStyle: styles.noSeparator,
+            }}
+          />
+          <Stack.Screen name="Detail" component={DetailScreen} />
+        </Stack.Navigator>
+      </Animated.View>
     );
   }
 }

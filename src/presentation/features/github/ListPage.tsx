@@ -1,24 +1,63 @@
 import React from 'react';
-import {FlatList, StyleSheet, View} from 'react-native';
-import {exampleListItems, GithubProfileSectionItem} from './GitHubProfileData';
-import {StackNavigationProp} from '@react-navigation/stack';
-import {GithubProfileParamList} from './GithubScreen';
 import palette from '../../res/palette';
 import SectionHeader from './SectionHeader';
 import ProfileStackPager from './ProfileStackPager';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {GithubProfileParamList} from './GithubScreen';
+import {Animated, StyleSheet, View} from 'react-native';
+import {exampleListItems, GithubProfileSectionItem} from './GitHubProfileData';
 
 type Props = {
   navigation: StackNavigationProp<GithubProfileParamList, 'List'>;
 };
 
-export default class ListPage extends React.Component<Props> {
+type State = {
+  scrollY: Animated.Value;
+};
+
+export default class ListPage extends React.Component<Props, State> {
+  scrollY = new Animated.Value(0);
+
+  componentDidMount() {
+    const {navigation} = this.props;
+
+    const headerY = Animated.multiply(
+      Animated.diffClamp(this.scrollY, 0, 55),
+      -1,
+    );
+
+    this.scrollY.addListener(v => {
+      console.log(v);
+
+      parentNavigation.setOptions({
+        headerStyle: {
+          transform: [{translateY: headerY}],
+          shadowColor: 'transparent',
+        },
+      });
+
+      navigation.setOptions({
+        headerShown: false,
+      });
+    });
+
+    const parentNavigation: Props['navigation'] = navigation.dangerouslyGetParent();
+    if (!parentNavigation) {
+      return;
+    }
+  }
+
   render() {
     const {navigation} = this.props;
 
     return (
-      <FlatList
+      <Animated.FlatList
         style={palette.whiteBackground}
         data={exampleListItems}
+        onScroll={Animated.event(
+          [{nativeEvent: {contentOffset: {y: this.scrollY}}}],
+          {useNativeDriver: true},
+        )}
         renderItem={item => (
           <SectionItem navigation={navigation} section={item.item} />
         )}
@@ -50,6 +89,6 @@ class SectionItem extends React.Component<
 
 const styles = StyleSheet.create({
   rootListContentContainer: {
-    height: '100%' /*prevent last item clipping*/,
+    paddingBottom: 25, // Padding at the bottom of the list.
   },
 });

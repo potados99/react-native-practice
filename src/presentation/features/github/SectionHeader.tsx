@@ -22,7 +22,7 @@ export default class SectionHeader extends React.Component<Props> {
       <TouchableOpacity onPress={onClickMore}>
         <View style={[styles.container, style]}>
           <Text style={styles.headerText}>{title}</Text>
-          <Icon name="arrow-right" size={24} color={color.textPrimary} />
+          <Icon name="arrow-right" size={25} color={color.textPrimary} />
         </View>
       </TouchableOpacity>
     );
