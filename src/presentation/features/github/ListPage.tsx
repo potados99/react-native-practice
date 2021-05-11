@@ -6,7 +6,6 @@ import {StackNavigationProp} from '@react-navigation/stack';
 import {GithubProfileParamList} from './GithubScreen';
 import {Animated, StyleSheet, View} from 'react-native';
 import {exampleListItems, GithubProfileSectionItem} from './GitHubProfileData';
-import {MaterialTopTabNavigationProp} from '@react-navigation/material-top-tabs';
 
 type Props = {
   navigation: StackNavigationProp<GithubProfileParamList, 'List'>;
@@ -27,15 +26,15 @@ export default class ListPage extends React.Component<Props, State> {
       -1,
     );
 
-    const parentStackNavigation: Props['navigation'] = navigation.dangerouslyGetParent();
-    if (!parentStackNavigation) {
+    const parentNavigation: Props['navigation'] = navigation.dangerouslyGetParent();
+    if (!parentNavigation) {
       return;
     }
 
     this.scrollY.addListener(v => {
       console.log(v);
 
-      parentStackNavigation.setOptions({
+      parentNavigation.setOptions({
         headerStyle: {
           transform: [{translateY: headerY}],
           shadowColor: 'transparent',
@@ -43,11 +42,7 @@ export default class ListPage extends React.Component<Props, State> {
       });
 
       navigation.setOptions({
-        tabBarOptions: {
-          style: {
-            height: 20,
-          },
-        },
+        //
       });
     });
   }
