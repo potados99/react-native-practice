@@ -4,6 +4,7 @@ import {StackNavigationProp} from '@react-navigation/stack';
 import {Button, ScrollView, Text, View} from 'react-native';
 import {GithubProfileParamList} from './GithubScreen';
 import ProfileStackPager from './ProfileStackPager';
+import palette from '../../res/palette';
 
 type Props = {
   route: RouteProp<GithubProfileParamList, 'Detail'>;
@@ -16,7 +17,7 @@ export default class DetailScreen extends React.Component<Props> {
     const {section} = route.params;
 
     return (
-      <ScrollView>
+      <ScrollView style={palette.whiteBackground}>
         <ProfileStackPager profiles={section.profiles} />
       </ScrollView>
     );
