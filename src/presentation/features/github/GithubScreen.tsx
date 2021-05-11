@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/Feather';
 import ListScreen from './ListScreen';
 import DetailScreen from './DetailScreen';
 import color from '../../res/color';
-import {GithubProfileItem, GithubProfileSectionItem} from './GitHubProfileData';
+import {GithubProfileSectionItem} from './GitHubProfileData';
 
 const config: SimpleStackNavigatorConfig = {
   screens: [
@@ -18,6 +18,9 @@ const config: SimpleStackNavigatorConfig = {
           <Icon name="code" size={27} color={color.textPrimary} />
         ),
         headerTitleAlign: 'center',
+        headerStyle: {
+          shadowColor: 'transparent', // Remove separator.
+        },
       },
     },
     {
