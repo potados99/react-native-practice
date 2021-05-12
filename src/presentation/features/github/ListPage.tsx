@@ -6,47 +6,13 @@ import {StackNavigationProp} from '@react-navigation/stack';
 import {GithubProfileParamList} from './GithubScreen';
 import {Animated, StyleSheet, View} from 'react-native';
 import {exampleListItems, GithubProfileSectionItem} from './GitHubProfileData';
+import Global from '../../../store/Global';
 
 type Props = {
   navigation: StackNavigationProp<GithubProfileParamList, 'List'>;
 };
 
-type State = {
-  scrollY: Animated.Value;
-};
-
-export default class ListPage extends React.Component<Props, State> {
-  scrollY = new Animated.Value(0);
-
-  componentDidMount() {
-    const {navigation} = this.props;
-
-    const headerY = Animated.multiply(
-      Animated.diffClamp(this.scrollY, 0, 55),
-      -1,
-    );
-
-    const parentNavigation: Props['navigation'] = navigation.dangerouslyGetParent();
-    if (!parentNavigation) {
-      return;
-    }
-
-    this.scrollY.addListener(v => {
-      console.log(v);
-
-      parentNavigation.setOptions({
-        headerStyle: {
-          transform: [{translateY: headerY}],
-          shadowColor: 'transparent',
-        },
-      });
-
-      navigation.setOptions({
-        //
-      });
-    });
-  }
-
+export default class ListPage extends React.Component<Props> {
   render() {
     const {navigation} = this.props;
 
@@ -55,7 +21,7 @@ export default class ListPage extends React.Component<Props, State> {
         style={palette.whiteBackground}
         data={exampleListItems}
         onScroll={Animated.event(
-          [{nativeEvent: {contentOffset: {y: this.scrollY}}}],
+          [{nativeEvent: {contentOffset: {y: Global.scrollY}}}],
           {useNativeDriver: true},
         )}
         renderItem={item => (
