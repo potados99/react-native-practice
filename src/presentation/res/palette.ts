@@ -31,6 +31,18 @@ const palette = StyleSheet.create({
   whiteBackground: {
     backgroundColor: color.white,
   },
+
+  shadowedTopBar: {
+    shadowColor: 'black',
+
+    // iOS
+    shadowOffset: {width: 0, height: 0},
+    shadowRadius: 2,
+    shadowOpacity: 0.2,
+
+    // Android
+    elevation: 4,
+  },
 });
 
 export default palette;

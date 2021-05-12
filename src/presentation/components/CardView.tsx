@@ -45,8 +45,8 @@ const styles = StyleSheet.create({
   card: {
     overflow: Platform.OS === 'android' ? 'hidden' : 'visible',
     shadowColor: 'black',
-    backgroundColor: color.white,
     borderRadius: 12,
+    backgroundColor: color.white,
 
     // iOS
     shadowOffset: {width: 0, height: 4},
