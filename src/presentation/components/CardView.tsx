@@ -44,14 +44,14 @@ export default class CardView extends React.Component<Props> {
 const styles = StyleSheet.create({
   card: {
     overflow: Platform.OS === 'android' ? 'hidden' : 'visible',
-    shadowColor: color.shadowColor,
+    shadowColor: 'black',
     backgroundColor: color.white,
     borderRadius: 12,
 
     // iOS
     shadowOffset: {width: 0, height: 4},
-    shadowRadius: 8,
-    shadowOpacity: 0.3,
+    shadowRadius: 6,
+    shadowOpacity: 0.2,
 
     // Android
     elevation: 8,

@@ -16,7 +16,7 @@ export default class ProfileStackPager extends React.Component<{
 
     return (
       <Carousel
-        gap={12}
+        gap={6}
         bounces={stackSize !== undefined}
         data={divideArray(profiles, stackSize)}
         style={styles.sectionCarousel}
