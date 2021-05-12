@@ -8,7 +8,6 @@ import {StackHeaderOptions} from '@react-navigation/stack/lib/typescript/src/typ
 import {Platform, StyleSheet, Animated} from 'react-native';
 import {GithubProfileSectionItem} from './GitHubProfileData';
 import {createStackNavigator, TransitionPresets} from '@react-navigation/stack';
-import Global from '../../../store/Global';
 
 export type GithubProfileParamList = {
   List: undefined;

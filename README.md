@@ -249,6 +249,13 @@
 4. 그리고 [얘](https://docs.swmansion.com/react-native-reanimated/docs/installation)가 하란대로 다 해준다.
 5. ~~잘 안 따라하면 문제 생긴다. 에러가 뜨면 잘 따라했는지부터 보자!~~
 
+### 스크롤할 때에 헤더 올리기
+
+1. 결론: 안돼. 포기해.
+2. 문제1: scrollY 기반으로 translateY 설정하는 방법에는 iOS에서 bounce를 처리하기 힘들다는 치명적 단점이 있음.
+3. 문제2: 위 문제를 해결해도 StakNavigation과 MaterialTopTabNavigation을 함께 사용하기 쉽지 않음.
+4. 문제3: 이걸 react-navigation이 공식 지원할 생각이 없어 보임.
+
 ## 오늘의 교훈
 
 ### 2021.5.4
@@ -296,3 +303,4 @@
 ### 2021.5.12
 
 - 왜 이 곳에는 그 흔한 CollapsingToolbar도 없는것인가....ㅠㅠㅠㅠ
+- 정말 개고생하다가 포기해버렸다 ㅎㅎㅎㅎㅎㅎ 그냥 넘어가자 ㅎㅎ

@@ -7,9 +7,16 @@ export default class ListScreen extends React.Component {
     const Tab = createMaterialTopTabNavigator();
 
     return (
-      <Tab.Navigator swipeEnabled={false}>
-        <Tab.Screen name="Today" component={ListPage} />
-        <Tab.Screen name="Tomorrow" component={ListPage} />
+      <Tab.Navigator
+        swipeEnabled={false}
+        tabBarOptions={{
+          labelStyle: {},
+        }}>
+        <Tab.Screen name="오늘" component={ListPage} />
+        <Tab.Screen name="내일" component={ListPage} />
+        <Tab.Screen name="모레" component={ListPage} />
+        <Tab.Screen name="글피" component={ListPage} />
+        <Tab.Screen name="그글피" component={ListPage} />
       </Tab.Navigator>
     );
   }

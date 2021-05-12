@@ -6,7 +6,6 @@ import {StackNavigationProp} from '@react-navigation/stack';
 import {GithubProfileParamList} from './GithubScreen';
 import {Animated, StyleSheet, View} from 'react-native';
 import {exampleListItems, GithubProfileSectionItem} from './GitHubProfileData';
-import Global from '../../../store/Global';
 
 type Props = {
   navigation: StackNavigationProp<GithubProfileParamList, 'List'>;
@@ -20,10 +19,6 @@ export default class ListPage extends React.Component<Props> {
       <Animated.FlatList
         style={palette.whiteBackground}
         data={exampleListItems}
-        onScroll={Animated.event(
-          [{nativeEvent: {contentOffset: {y: Global.scrollY}}}],
-          {useNativeDriver: false},
-        )}
         renderItem={item => (
           <SectionItem navigation={navigation} section={item.item} />
         )}
