@@ -27,6 +27,6 @@ export default class DetailScreen extends React.Component<Props> {
     const {route, navigation} = this.props;
     const {section} = route.params;
 
-    navigation.setOptions({title: section.title});
+    navigation.setOptions({headerTitle: section.title});
   }
 }
