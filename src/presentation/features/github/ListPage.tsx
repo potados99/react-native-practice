@@ -22,7 +22,7 @@ export default class ListPage extends React.Component<Props> {
         data={exampleListItems}
         onScroll={Animated.event(
           [{nativeEvent: {contentOffset: {y: Global.scrollY}}}],
-          {useNativeDriver: true},
+          {useNativeDriver: false},
         )}
         renderItem={item => (
           <SectionItem navigation={navigation} section={item.item} />

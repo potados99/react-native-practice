@@ -46,6 +46,23 @@ export const exampleListItems: GithubProfileSectionItem[] = [
     ],
   },
   {
+    title: 'Duplicated',
+    profiles: [
+      {
+        userId: 'adw',
+      },
+      {
+        userId: 'dawd',
+      },
+      {
+        userId: 'awdddd',
+      },
+      {
+        userId: 'asdawd',
+      },
+    ],
+  },
+  {
     title: 'Recent',
     profiles: [
       {
