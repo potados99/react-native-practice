@@ -17,7 +17,9 @@ export default class DetailScreen extends React.Component<Props> {
     const {section} = route.params;
 
     return (
-      <ScrollView style={palette.whiteBackground}>
+      <ScrollView
+        style={palette.whiteBackground}
+        contentContainerStyle={{paddingTop: 8}}>
         <ProfileStackPager profiles={section.profiles} />
       </ScrollView>
     );
