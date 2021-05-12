@@ -46,12 +46,12 @@ const styles = StyleSheet.create({
     overflow: Platform.OS === 'android' ? 'hidden' : 'visible',
     shadowColor: color.shadowColor,
     backgroundColor: color.white,
+    borderRadius: 12,
 
     // iOS
-    shadowOffset: {width: 0, height: 2},
-    shadowRadius: 18,
-    shadowOpacity: 0.2,
-    borderRadius: 12,
+    shadowOffset: {width: 0, height: 4},
+    shadowRadius: 8,
+    shadowOpacity: 0.3,
 
     // Android
     elevation: 8,
